@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= location %>· Skyline Weather
+    </title> <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet" crossorigin="anonymous"> 
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        
+    <!-- Google Fonts: Space Grotesk (display) + Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body class="page-weather">
+    <% const conditionKey = (weather.weather[0].main || "").toLowerCase();const now = Date.now() / 1000;
+    const isDaytime = now >= weather.sys.sunrise && now < weather.sys.sunset;
+    const heroClasses ="hero-card condition-" +conditionKey +(isDaytime ? " is-day" : " is-night"); %>
+    <header class="site-header">
+        <div class="container site-header__inner"> <a href="/" class="brand">
+                <span class="brand__mark" aria-hidden="true"> <img
+                        src="/images/weather_icon.svg" alt="" height="35">
+                </span> Weather App </a> <a href="/" class="btn-ghost"> <i
+                    class="bi bi-arrow-left"></i> New search </a> </div>
+    </header>
+    <main class="container weather-results py-5">
+        <div class="<%= heroClasses %> mx-auto mb-5"
+            style="max-width: 680px;"> <span class="eyebrow"><i
+                    class="bi bi-geo-alt-fill"> </i>
+                <%= location %>
+            </span>
+            <div class="hero-main"> <img src="<%= iconURL %>"
+                    alt="<%= weather.weather[0].description %>"
+                    class="weather-icon">
+                <div class="hero-temp"> <span class="hero-temp__value">
+                        <%= Math.round(weather.main.temp) %>
+                    </span> <span class="hero-temp__unit">°C</span> </div>
+            </div>
+            <h2 class="hero-condition">
+                <%= weather.weather[0].main %>
+            </h2>
+            <p class="hero-description">
+                <%= weather.weather[0].description %>
+            </p>
+            <div class="hero-meta"> <span class="pill">Feels like
+                    <%= Math.round(weather.main.feels_like) %>°C
+                </span> <span class="pill pill--muted">H
+                    <%= Math.round(weather.main.temp_max) %>° ·
+                    L
+                    <%= Math.round(weather.main.temp_min) %>°
+                </span> </div>
+        </div>
+        <div class="row g-4 mx-auto details-grid" style="max-width: 900px;">
+            <div class="col-md-4">
+                <div class="detail-card h-100"> <span
+                        class="detail-card__label"><i
+                            class="bi bi-thermometer-half"></i>
+                        Temperature</span>
+                    <ul class="detail-card__list">
+                        <li><span>Current</span><strong>
+                                <%= Math.round(weather.main.temp) %>
+                                °C
+                            </strong></li>
+                        <li><span>Min</span><strong>
+                                <%= Math.round(weather.main.temp_min) %>
+                                °C
+                            </strong></li>
+                        <li><span>Max</span><strong>
+                                <%= Math.round(weather.main.temp_max) %>
+                                °C
+                            </strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="detail-card h-100"> <span
+                        class="detail-card__label"><i class="bi bi-cloud"></i>
+                        Atmosphere</span>
+                    <ul class="detail-card__list">
+                        <li><span>Humidity</span><strong>
+                                <%= weather.main.humidity %>%
+                            </strong></li>
+                        <li><span>Pressure</span><strong>
+                                <%= weather.main.pressure %>hPa
+                            </strong></li>
+                        <li><span>Clouds</span><strong>
+                                <%= weather.clouds.all %>%
+                            </strong></li>
+                        <li><span>Visibility</span><strong>
+                                <%= weather.visibility / 1000 %>
+                                km
+                            </strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="detail-card h-100"> <span
+                        class="detail-card__label"> <i class="bi bi-wind"></i>
+                        Wind </span>
+                    <ul class="detail-card__list">
+                        <li> <span>Speed</span> <strong>
+                                <%= weather.wind.speed %>m/s
+                            </strong> </li>
+                        <% if (weather.wind.gust) { %>
+                            <li> <span>Gust</span> <strong>
+                                    <%= weather.wind.gust %>m/s
+                                </strong> </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="detail-card h-100"> <span
+                        class="detail-card__label"> <i
+                            class="bi bi-sunrise"></i> Sun Cycle </span>
+                    <ul class="detail-card__list">
+                        <li> <span>Sunrise</span> <strong>
+                                <%= new Date(weather.sys.sunrise * 1000).toLocaleTimeString([], {hour: '2-digit',minute: '2-digit'}) %>
+                            </strong> </li>
+                        <li> <span>Sunset</span> <strong>
+                                <%= new Date(weather.sys.sunset * 1000).toLocaleTimeString([], {hour: '2-digit',minute: '2-digit'}) %>
+                            </strong> </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="detail-card h-100"> <span
+                        class="detail-card__label"><i class="bi bi-compass"></i>
+                        Coordinates &amp; rain</span>
+                    <ul class="detail-card__list">
+                        <li><span>Latitude</span><strong>
+                                <%= weather.coord.lat %>
+                            </strong></li>
+                        <li><span>Longitude</span><strong>
+                                <%= weather.coord.lon %>
+                            </strong></li>
+                        <% if (weather.rain) { %>
+                            <li><span>Rain (1h)</span><strong>
+                                    <%= weather.rain["1h"] %>mm
+                                </strong></li>
+                            <% } else { %>
+                            <li><span>Rain</span><strong>None expected</strong>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5"> <a href="/"
+                class="btn-submit d-inline-flex align-items-center gap-2"> <i
+                    class="bi bi-search"></i> Search another location </a>
+        </div>
+    </main>
+    <%- include("partial/footer.ejs") %>

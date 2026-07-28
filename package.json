@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "axios": "^1.18.1",
+    "body-parser": "^2.3.0",
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  },
+  
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "name": "weather-application",
+  "description": "A modern weather web application built with Node.js, Express.js, EJS, and the OpenWeatherMap API.",
+  "author": "Ch. Eekshith Reddy",
+  "license": "MIT",
+  "type": "module"
+}
