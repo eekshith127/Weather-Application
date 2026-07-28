@@ -44,7 +44,7 @@ A modern weather web application built with Node.js, Express.js, EJS, OpenWeathe
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 Weather-Application/
@@ -69,7 +69,7 @@ Weather-Application/
 ```
 ---
 
-## 📋 Requirements
+## Requirements
 
 - Node.js (v18 or later recommended)
 - npm
@@ -153,7 +153,7 @@ http://localhost:3000
 
 ---
 
-## 🌍 APIs Used
+## APIs Used
 
 This project uses the following APIs:
 
@@ -161,7 +161,7 @@ This project uses the following APIs:
 - **[Geoapify Geocoding API](https://www.geoapify.com/geocoding-api/)**
 ---
 
-## 💡 Future Improvements
+## Future Improvements
 
 - 5-day weather forecast
 - Air Quality Index (AQI)
@@ -174,7 +174,7 @@ This project uses the following APIs:
 
 ---
 
-## 📖 What I Learned
+## What I Learned
 
 While building this project, I learned:
 
