@@ -137,8 +137,10 @@ http://localhost:3000
 ### Desktop
 
 <p align="center">
-  <img src="screenshots/desktop-home.png" alt="Home Page" width="48%">
-  <img src="screenshots/desktop-info.png" alt="Weather Results" width="48%">
+  <img src="screenshots/desktop-home.png" alt="Home Page" width="60%">
+</p>
+<p align="center">
+  <img src="screenshots/desktop-info.png" alt="Weather Results" width="60%">
 </p>
 
 ### Mobile
